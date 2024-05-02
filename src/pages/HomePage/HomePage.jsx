@@ -57,7 +57,7 @@ const HomePage = () => {
             placeholder="Type a message..."
             style={{ width: '100%', marginTop: '10px' }}
         />
-        <button onClick={handleMessageSend} style={{ marginTop: '10px' }}>Send</button>
+        <button onClick={handleMessageSend} >Send</button>
     </div>
   );
 };
