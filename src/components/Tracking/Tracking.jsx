@@ -33,12 +33,12 @@ const Tracking = () => {
         value={trackingNumber}
         onChange={(e) => setTrackingNumber(e.target.value)}
       />
-      <button className="usps-tracking__button" onClick={fetchTrackingInfo}>Track Your Order {'>'}</button>
-      {error && <p className="usps-tracking__error">{error}</p>}
+       {error && <p className="usps-tracking__error">{error}</p>}
       {loading && <p>Loading...</p>}
       {trackingData && (
         <pre>{JSON.stringify(trackingData, null, 2)}</pre>
       )}
+      <button className="usps-tracking__button" onClick={fetchTrackingInfo}>Track Your Order {'>'}</button>
     </div>
   );
 };
