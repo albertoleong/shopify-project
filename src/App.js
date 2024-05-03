@@ -2,13 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.scss';
 
 import HomePage from './pages/HomePage/HomePage.jsx';
+import Header from './components/Header/Header.jsx';
 
 function App() {
 
   return (
     <>
     <BrowserRouter>
-    <h1 className='title'>Shopify Help Desk</h1>
+      <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
       </Routes>

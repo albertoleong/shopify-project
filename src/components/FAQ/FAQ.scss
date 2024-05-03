@@ -1,5 +1,9 @@
 .faq {
     padding: 0 1rem;
+
+    &__title {
+      padding-bottom: 1.5rem;
+    }
     .faq__item {
       margin-bottom: 16px;
       border-bottom: 1px solid #EAEAEA;
