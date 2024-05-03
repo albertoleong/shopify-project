@@ -1,64 +1,19 @@
-import { useState } from 'react';
-import axios from 'axios';
+
 import './HomePage.scss'; 
+import ChatBot from '../../components/ChatBot/ChatBot';
+import Faq from '../../components/FAQ/FAQ';
+import Tracking from '../../components/Tracking/Tracking';
 
 const HomePage = () => {
-    const [messages, setMessages] = useState([]);
-    const [input, setInput] = useState('');
-    const API_KEY = "sk-proj-RrLQbtcdMopc7bzVrPVlT3BlbkFJllmp7IAqwUiCTSBTP52J"
-
-    const handleMessageSend = async () => {
-        if (input.trim() === '') return;
-        const newMessages = [...messages, { text: input, sender: 'user' }];
-        setMessages(newMessages);
-        setInput('');
-
-        try {
-            const response = await axios.post(
-              'https://api.openai.com/v1/chat/completions',
-            {
-                model: "gpt-3.5-turbo",
-                messages: [{ role: 'user', content: input }],
-                temperature: 0.7,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEY}`,
-                },
-            }
-        );
-
-        const botResponse = response.data.choices[0].text.trim();
-        const newMessagesWithResponse = [...newMessages, { text: botResponse, sender: 'bot' }];
-        setMessages(newMessagesWithResponse);
-        } catch (error) {
-        console.error('Error:', error);
-        }
-    };
-
-    const handleInputChange = (e) => {
-        setInput(e.target.value);
-    };
 
     return (
-    <div className="chat">
-        <div className="chat__message">
-            {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}>
-                {message.text}
-            </div>
-            ))}
-        </div>
-        <input
-            type="text"
-            value={input}
-            onChange={handleInputChange}
-            placeholder="Type a message..."
-            className='chat__input'
-        />
-        <button onClick={handleMessageSend} className='chat__button'>Send</button>
-    </div>
+        <main className='home'>
+            <Faq />
+            <section className='bottom'>
+                <ChatBot />
+                <Tracking />
+            </section>
+        </main>
   );
 };
 
