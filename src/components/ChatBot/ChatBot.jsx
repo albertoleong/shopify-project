@@ -31,7 +31,7 @@ const ChatBot = () => {
             }
         );
 
-        const botResponse = response.data.choices[0].text.trim();
+        const botResponse = response.data.choices[0].message.content
         const newMessagesWithResponse = [...newMessages, { text: botResponse, sender: 'bot' }];
         setMessages(newMessagesWithResponse);
         } catch (error) {

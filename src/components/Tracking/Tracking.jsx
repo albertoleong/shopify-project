@@ -1,18 +1,20 @@
 import './Tracking.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+
 const USERID = '55Q9FASHI2225';
 const PASSWORD = 'B6780UN22IH5664';
 
 const Tracking = () => {
-
-  const [trackingNumber, setTrackingNumber] = useState([]);
+  const [trackingNumber, setTrackingNumber] = useState('');
   const [trackingData, setTrackingData] = useState(null);
-  const [error, setError] = useState([]);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
   const fetchTrackingInfo = async () => {
+    setLoading(true);
     try {
-      const apiUrl = `https://secure.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=<TrackFieldRequest USERID="${USERID}"><TrackID ID="${trackingNumber}"></TrackID></TrackFieldRequest>&USERID=${USERID}&PASSWORD=${PASSWORD}`;
+      const apiUrl = `https://secure.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=<TrackFieldRequest USERID="${USERID}"><TrackID ID="${encodeURIComponent(trackingNumber)}"></TrackID></TrackFieldRequest>&USERID=${USERID}&PASSWORD=${PASSWORD}`;
       const response = await axios.get(apiUrl);
       setTrackingData(response.data);
       setLoading(false);
@@ -33,7 +35,7 @@ const Tracking = () => {
         value={trackingNumber}
         onChange={(e) => setTrackingNumber(e.target.value)}
       />
-       {error && <p className="usps-tracking__error">{error}</p>}
+      {error && <p className="usps-tracking__error">{error}</p>}
       {loading && <p>Loading...</p>}
       {trackingData && (
         <pre>{JSON.stringify(trackingData, null, 2)}</pre>
@@ -42,4 +44,5 @@ const Tracking = () => {
     </div>
   );
 };
+
 export default Tracking;
