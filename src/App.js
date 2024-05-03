@@ -8,7 +8,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <h1>CHATBOT</h1>
+    <h1 className='title'>CHATBOT</h1>
       <Routes>
         <Route path='/' element={<HomePage />} />
       </Routes>
