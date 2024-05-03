@@ -27,7 +27,7 @@ const Tracking = () => {
          {trackingResponse && (
           <p className="usps-tracking__response">{trackingResponse}</p>
         )}
-        <button className="usps-tracking__button" onClick={handleButtonClick}>Track Your Order {'>'}</button>
+        <button className="usps-tracking__button" onClick={handleButtonClick}>Track Your Order</button>
        
       </div>
   );
